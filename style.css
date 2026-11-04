@@ -1,0 +1,2364 @@
+
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
+
+/* =========================================================
+   ISLAND SAFARI — COMPLETE WEBSITE DESIGN SYSTEM
+   Premium Tropical Travel Website
+========================================================= */
+
+
+/* ================= 01. ROOT & RESET ================= */
+
+:root {
+    --navy: #102d35;
+    --navy-light: #183f48;
+    --ocean: #176b72;
+    --teal: #287f7d;
+    --teal-light: #e5f0ed;
+    --sand: #d8bd91;
+    --sand-light: #f5f0e7;
+    --cream: #faf9f5;
+    --white: #ffffff;
+    --text: #263b3e;
+    --muted: #778587;
+    --border: #e7e9e5;
+
+    --heading-font: "Playfair Display", Georgia, serif;
+    --body-font: "DM Sans", Arial, sans-serif;
+
+    --container-width: 1200px;
+    --section-space: 110px;
+
+    --transition: all 0.35s ease;
+    --shadow: 0 18px 50px rgba(16, 45, 53, 0.10);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: var(--body-font);
+    color: var(--text);
+    background: var(--cream);
+    font-size: 15px;
+    line-height: 1.75;
+    overflow-x: hidden;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+    font-family: var(--body-font);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font: inherit;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+p {
+    margin-bottom: 18px;
+}
+
+.container {
+    max-width: var(--container-width);
+}
+
+
+/* ================= 02. TYPOGRAPHY ================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--heading-font);
+    color: var(--navy);
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+em {
+    font-style: italic;
+    color: var(--teal);
+}
+
+.section-padding {
+    padding-top: var(--section-space);
+    padding-bottom: var(--section-space);
+}
+
+.section-eyebrow,
+.eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.section-eyebrow > span,
+.eyebrow > span {
+    display: inline-block;
+    width: 27px;
+    height: 1px;
+    background: var(--sand);
+    flex-shrink: 0;
+}
+
+.section-heading {
+    margin-bottom: 55px;
+}
+
+.section-title {
+    font-size: clamp(38px, 5vw, 58px);
+    letter-spacing: -1.5px;
+    line-height: 1.13;
+    margin-bottom: 22px;
+}
+
+.section-description {
+    max-width: 540px;
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.9;
+}
+
+.text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--teal);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--sand);
+    padding-bottom: 9px;
+    transition: var(--transition);
+}
+
+.text-link i {
+    transition: transform 0.3s ease;
+}
+
+.text-link:hover {
+    color: var(--navy);
+    gap: 17px;
+}
+
+.text-link:hover i {
+    transform: translateX(4px);
+}
+
+
+/* ================= 03. BUTTONS ================= */
+
+.btn-primary-custom,
+.btn-outline-custom {
+    min-height: 54px;
+    padding: 15px 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.btn-primary-custom {
+    color: var(--white);
+    background: var(--teal);
+    border: 1px solid var(--teal);
+}
+
+.btn-primary-custom:hover {
+    color: var(--white);
+    background: var(--navy);
+    border-color: var(--navy);
+    transform: translateY(-3px);
+}
+
+.btn-outline-custom {
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.06);
+}
+
+.btn-outline-custom:hover {
+    color: var(--navy);
+    background: var(--white);
+    border-color: var(--white);
+}
+
+
+/* ================= 04. NAVIGATION ================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(250, 249, 245, 0.97);
+    border-bottom: 1px solid rgba(16, 45, 53, 0.07);
+    backdrop-filter: blur(15px);
+}
+
+.site-header .navbar {
+    min-height: 82px;
+    padding: 12px 0;
+}
+
+.brand-logo,
+.footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    color: var(--navy);
+    font-family: var(--body-font);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    line-height: 1.15;
+}
+
+.brand-logo strong,
+.footer-brand strong {
+    color: var(--teal);
+}
+
+.brand-logo small,
+.footer-brand small {
+    display: block;
+    margin-top: 6px;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+}
+
+.brand-icon {
+    width: 42px;
+    height: 42px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background: var(--teal);
+    border-radius: 50%;
+    font-size: 21px;
+}
+
+.navbar-nav {
+    gap: 5px;
+}
+
+.navbar .nav-link {
+    padding: 12px 11px !important;
+    color: #526366;
+    font-size: 11px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: var(--teal);
+}
+
+.nav-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 17px;
+    color: var(--white);
+    background: var(--navy);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.nav-cta:hover {
+    color: var(--white);
+    background: var(--teal);
+}
+
+.navbar-toggler {
+    border: 1px solid var(--border);
+    border-radius: 0;
+    padding: 8px 10px;
+    box-shadow: none !important;
+}
+
+
+/* ================= 05. HOME HERO ================= */
+
+.hero-section {
+    min-height: 690px;
+    height: min(760px, calc(100vh - 82px));
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: #234d52;
+}
+
+.hero-background,
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.hero-background {
+    background-color: #426d70;
+    background-position: center;
+    background-size: cover;
+    transform: scale(1.02);
+}
+
+.hero-overlay {
+    background:
+        linear-gradient(90deg,
+            rgba(9, 34, 40, 0.83) 0%,
+            rgba(9, 34, 40, 0.58) 48%,
+            rgba(9, 34, 40, 0.12) 100%),
+        linear-gradient(0deg,
+            rgba(9, 34, 40, 0.30),
+            transparent 55%);
+}
+
+.hero-container {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 65px;
+    padding-bottom: 80px;
+}
+
+.hero-content {
+    max-width: 720px;
+    padding-top: 30px;
+}
+
+.hero-eyebrow {
+    color: #e9d8b7;
+}
+
+.hero-content h1 {
+    max-width: 700px;
+    color: var(--white);
+    font-size: clamp(52px, 7vw, 88px);
+    letter-spacing: -2.5px;
+    line-height: 1.04;
+    margin-bottom: 26px;
+}
+
+.hero-content h1 em {
+    display: block;
+    color: #e5cda8;
+}
+
+.hero-content p {
+    max-width: 510px;
+    color: rgba(255,255,255,0.82);
+    font-size: 15px;
+    line-height: 1.9;
+    margin-bottom: 34px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 13px;
+}
+
+.hero-bottom {
+    position: absolute;
+    bottom: 28px;
+    left: 12px;
+    right: 12px;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,0.85);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.7px;
+}
+
+.hero-location,
+.hero-scroll {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.hero-location i {
+    color: #e5cda8;
+    font-size: 16px;
+}
+
+
+/* ================= 06. IMAGE PLACEHOLDERS ================= */
+
+/* Image wrappers retain their shape even before photos are supplied. */
+
+.intro-image-wrap,
+.about-main-image,
+.experience-image,
+.resort-image,
+.destination-image-large,
+.destination-image-small,
+.page-hero-background,
+.hero-background,
+.cta-background,
+.statement-background {
+    background-color: #dce8e2;
+    background-image:
+        linear-gradient(135deg, #dce8e2 0%, #b7d0c8 50%, #8eb5b0 100%);
+    overflow: hidden;
+}
+
+.intro-image-wrap,
+.about-main-image {
+    position: relative;
+}
+
+.intro-image-wrap img,
+.about-main-image img,
+.experience-image img,
+.resort-image img,
+.destination-image-large img,
+.destination-image-small img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+/* Hide unavailable images; the wrapper's gradient remains visible.
+   script.js adds .image-loaded when an image loads successfully. */
+
+.intro-image-wrap img:not(.image-loaded),
+.about-main-image img:not(.image-loaded),
+.experience-image img:not(.image-loaded),
+.resort-image img:not(.image-loaded),
+.destination-image-large img:not(.image-loaded),
+.destination-image-small img:not(.image-loaded) {
+    visibility: hidden;
+}
+
+.intro-image-wrap img.image-loaded,
+.about-main-image img.image-loaded,
+.experience-image img.image-loaded,
+.resort-image img.image-loaded,
+.destination-image-large img.image-loaded,
+.destination-image-small img.image-loaded {
+    visibility: visible;
+}
+
+
+/* ================= 07. HOME INTRO ================= */
+
+.intro-section {
+    background: var(--cream);
+}
+
+.intro-image-wrap {
+    height: 490px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.intro-image-wrap::after {
+    content: "";
+    position: absolute;
+    width: 72%;
+    height: 72%;
+    right: -16px;
+    bottom: -16px;
+    border: 1px solid var(--sand);
+    z-index: 0;
+    pointer-events: none;
+}
+
+.intro-image-wrap img {
+    position: relative;
+    z-index: 1;
+}
+
+.image-caption {
+    position: absolute;
+    z-index: 2;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 15px 18px;
+    color: var(--white);
+    background: rgba(16, 45, 53, 0.82);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.caption-number {
+    color: #e5cda8;
+}
+
+.intro-content {
+    padding-left: 35px;
+}
+
+.intro-content .section-title {
+    max-width: 470px;
+}
+
+
+/* ================= 08. EXPERIENCE CARDS ================= */
+
+.journey-section {
+    background: var(--sand-light);
+}
+
+.journey-section .section-heading {
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.journey-section .section-description {
+    max-width: 550px;
+}
+
+.experience-card {
+    height: 100%;
+    background: var(--white);
+    transition: var(--transition);
+}
+
+.experience-card:hover {
+    transform: translateY(-7px);
+    box-shadow: var(--shadow);
+}
+
+.experience-image {
+    height: 270px;
+}
+
+.experience-card:hover .experience-image img,
+.resort-card:hover .resort-image img {
+    transform: scale(1.06);
+}
+
+.experience-content {
+    padding: 28px 26px 30px;
+}
+
+.experience-number {
+    color: var(--teal);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.6px;
+}
+
+.experience-content h3 {
+    margin: 14px 0 12px;
+    font-size: 25px;
+}
+
+.experience-content p {
+    min-height: 55px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--teal);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    transition: var(--transition);
+}
+
+.card-link:hover {
+    color: var(--navy);
+    gap: 15px;
+}
+
+
+/* ================= 09. RESORT CARDS ================= */
+
+.resorts-section {
+    background: var(--cream);
+}
+
+.resorts-section .section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 25px;
+}
+
+.resort-card {
+    height: 100%;
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.resort-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.resort-image {
+    position: relative;
+    display: block;
+    height: 265px;
+}
+
+.resort-image-label {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    padding: 8px 12px;
+    color: var(--navy);
+    background: var(--cream);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 1.4px;
+}
+
+.resort-info {
+    padding: 23px 22px 26px;
+}
+
+.resort-location {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.resort-location i {
+    color: var(--teal);
+    font-size: 13px;
+}
+
+.resort-info h3 {
+    min-height: 58px;
+    margin: 13px 0 17px;
+    font-size: 23px;
+}
+
+.mobile-resort-link {
+    display: none;
+    margin-top: 30px;
+}
+
+
+/* ================= 10. HOME CTA ================= */
+
+.home-cta-section {
+    position: relative;
+    min-height: 470px;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    overflow: hidden;
+    background: var(--navy);
+}
+
+.cta-background,
+.cta-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.cta-background {
+    background-color: #315b5d;
+    background-position: center;
+    background-size: cover;
+}
+
+.cta-overlay {
+    background: rgba(8, 36, 42, 0.76);
+}
+
+.cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    margin: auto;
+}
+
+.cta-content .section-eyebrow {
+    color: #e5cda8;
+}
+
+.cta-content h2 {
+    color: var(--white);
+    font-size: clamp(40px, 6vw, 66px);
+    margin-bottom: 20px;
+}
+
+.cta-content h2 em {
+    color: #e5cda8;
+}
+
+.cta-content p {
+    max-width: 540px;
+    margin: 0 auto 30px;
+    color: rgba(255,255,255,0.8);
+}
+
+
+/* ================= 11. INNER PAGE HERO ================= */
+
+.page-hero {
+    min-height: 440px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    background: var(--navy);
+}
+
+.page-hero-background,
+.page-hero-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.page-hero-background {
+    background-color: #527b79;
+    background-position: center;
+    background-size: cover;
+}
+
+.page-hero-overlay {
+    background: linear-gradient(
+        90deg,
+        rgba(10, 39, 45, 0.82),
+        rgba(10, 39, 45, 0.30)
+    );
+}
+
+.page-hero-content {
+    position: relative;
+    z-index: 2;
+    padding-top: 65px;
+    padding-bottom: 65px;
+}
+
+.breadcrumb-custom {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 35px;
+    color: rgba(255,255,255,0.72);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.breadcrumb-custom a:hover {
+    color: var(--white);
+}
+
+.breadcrumb-custom i {
+    font-size: 9px;
+}
+
+.page-hero-content h1 {
+    max-width: 760px;
+    color: var(--white);
+    font-size: clamp(45px, 6vw, 72px);
+    letter-spacing: -1.8px;
+    margin-bottom: 20px;
+}
+
+.page-hero-content h1 em {
+    color: #e5cda8;
+}
+
+.page-hero-content p {
+    max-width: 520px;
+    color: rgba(255,255,255,0.82);
+    font-size: 15px;
+}
+
+
+/* ================= 12. ABOUT PAGE ================= */
+
+.about-intro-section {
+    background: var(--cream);
+}
+
+.about-main-image {
+    height: 520px;
+    max-width: 500px;
+}
+
+.about-main-image::after {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(255,255,255,0.55);
+    pointer-events: none;
+}
+
+.about-image-note {
+    position: absolute;
+    z-index: 2;
+    bottom: 25px;
+    left: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 19px;
+    color: var(--white);
+    background: var(--navy);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+}
+
+.about-image-note i {
+    color: #e5cda8;
+    font-size: 18px;
+}
+
+.about-intro-content {
+    padding-left: 25px;
+}
+
+.about-approach-section {
+    background: var(--sand-light);
+}
+
+.approach-card {
+    position: relative;
+    height: 100%;
+    min-height: 275px;
+    padding: 35px 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.approach-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.approach-icon {
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    color: var(--teal);
+    background: var(--teal-light);
+    font-size: 23px;
+}
+
+.approach-number {
+    position: absolute;
+    top: 36px;
+    right: 28px;
+    color: #d8deda;
+    font-family: var(--heading-font);
+    font-size: 28px;
+}
+
+.approach-card h3 {
+    margin-bottom: 13px;
+    font-size: 24px;
+}
+
+.approach-card p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.about-destination-section {
+    background: var(--cream);
+}
+
+.destination-image-grid {
+    display: grid;
+    grid-template-columns: 1.35fr 0.8fr;
+    align-items: end;
+    gap: 18px;
+}
+
+.destination-image-large {
+    height: 440px;
+}
+
+.destination-image-small {
+    height: 300px;
+}
+
+.about-statement-section {
+    position: relative;
+    min-height: 430px;
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+    overflow: hidden;
+    background: var(--navy);
+}
+
+.statement-background,
+.statement-overlay {
+    position: absolute;
+    inset: 0;
+}
+
+.statement-background {
+    background-color: #315b5d;
+    background-position: center;
+    background-size: cover;
+}
+
+.statement-overlay {
+    background: rgba(8, 36, 42, 0.78);
+}
+
+.statement-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: auto;
+}
+
+.statement-content .section-eyebrow {
+    color: #e5cda8;
+}
+
+.statement-content h2 {
+    color: var(--white);
+    font-size: clamp(40px, 5.5vw, 64px);
+    margin-bottom: 22px;
+}
+
+.statement-content h2 em {
+    color: #e5cda8;
+}
+
+.statement-content p {
+    max-width: 580px;
+    margin: 0 auto 28px;
+    color: rgba(255,255,255,0.82);
+}
+
+
+/* ================= 13. PACKAGES PAGE ================= */
+
+.packages-intro {
+    background: var(--cream);
+}
+
+.packages-intro .section-description {
+    max-width: 700px;
+}
+
+.package-grid {
+    background: var(--sand-light);
+}
+
+.package-card {
+    height: 100%;
+    overflow: hidden;
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.package-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.package-card-image {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #dce8e2, #8eb5b0);
+}
+
+.package-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.package-card:hover .package-card-image img {
+    transform: scale(1.06);
+}
+
+.package-card-content {
+    padding: 25px;
+}
+
+.package-card-content h3 {
+    margin-bottom: 12px;
+    font-size: 24px;
+}
+
+.package-card-content p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.package-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 17px 0;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+.package-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.package-meta i {
+    color: var(--teal);
+}
+
+.package-details {
+    padding-top: 15px;
+    border-top: 1px solid var(--border);
+}
+
+
+/* ================= 14. RESORT DETAILS & GALLERIES ================= */
+
+.resort-detail-section {
+    padding: 85px 0;
+    background: var(--cream);
+}
+
+.resort-detail-section:nth-child(even) {
+    background: var(--sand-light);
+}
+
+.resort-detail-heading {
+    margin-bottom: 28px;
+}
+
+.resort-detail-heading h2 {
+    margin-bottom: 12px;
+    font-size: 38px;
+}
+
+.resort-detail-heading p {
+    color: var(--muted);
+}
+
+.resort-gallery {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-rows: 180px 180px;
+    gap: 12px;
+}
+
+.resort-gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #dce8e2, #8eb5b0);
+}
+
+.resort-gallery-item:first-child {
+    grid-row: span 2;
+}
+
+.resort-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.resort-gallery-item:hover img {
+    transform: scale(1.06);
+}
+
+.resort-description {
+    padding: 25px;
+    background: var(--white);
+    border: 1px solid var(--border);
+}
+
+.resort-description p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.resort-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    margin: 20px 0;
+}
+
+.resort-features span {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text);
+    font-size: 11px;
+}
+
+.resort-features i {
+    color: var(--teal);
+}
+
+
+/* ================= 15. ITINERARY PAGE ================= */
+
+.itinerary-section {
+    background: var(--cream);
+}
+
+.itinerary-intro {
+    max-width: 720px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.itinerary-list {
+    max-width: 850px;
+    margin: auto;
+    position: relative;
+}
+
+.itinerary-list::before {
+    content: "";
+    position: absolute;
+    top: 15px;
+    bottom: 20px;
+    left: 27px;
+    width: 1px;
+    background: #d8deda;
+}
+
+.itinerary-item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    gap: 25px;
+    margin-bottom: 35px;
+}
+
+.itinerary-day {
+    position: relative;
+    z-index: 2;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background: var(--teal);
+    border: 5px solid var(--cream);
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.itinerary-content {
+    padding: 25px 28px;
+    background: var(--white);
+    border: 1px solid var(--border);
+}
+
+.itinerary-content h3 {
+    margin-bottom: 12px;
+    font-size: 25px;
+}
+
+.itinerary-content p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.itinerary-image {
+    height: 250px;
+    margin-top: 20px;
+    overflow: hidden;
+    background: linear-gradient(135deg, #dce8e2, #8eb5b0);
+}
+
+.itinerary-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* ================= 16. TRAVEL INFO PAGE ================= */
+
+.travel-info-section {
+    background: var(--cream);
+}
+
+.travel-info-card {
+    height: 100%;
+    padding: 30px;
+    background: var(--white);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.travel-info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.travel-info-icon {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    color: var(--teal);
+    background: var(--teal-light);
+    font-size: 22px;
+}
+
+.travel-info-card h3 {
+    margin-bottom: 13px;
+    font-size: 23px;
+}
+
+.travel-info-card p {
+    margin-bottom: 0;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.travel-note {
+    margin-top: 45px;
+    padding: 25px 30px;
+    background: var(--sand-light);
+    border-left: 3px solid var(--sand);
+}
+
+.travel-note p {
+    margin-bottom: 0;
+    color: var(--text);
+    font-size: 13px;
+}
+
+/* ==========================================
+   ISLAND SAFARI — SIGNATURE CONTACT DESIGN
+========================================== */
+
+.contact-main-section {
+    position: relative;
+    padding: 115px 0;
+    background: #f1f0e9;
+    overflow: hidden;
+}
+
+.contact-main-section::before {
+    content: "ISLAND SAFARI";
+    position: absolute;
+    top: 35px;
+    right: -35px;
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(80px, 13vw, 180px);
+    color: rgba(23, 61, 66, 0.025);
+    white-space: nowrap;
+    pointer-events: none;
+}
+
+/* MAIN LAYOUT */
+
+.contact-main-section .container {
+    position: relative;
+    z-index: 1;
+}
+
+.contact-main-section .row {
+    align-items: stretch;
+    --bs-gutter-x: 0;
+}
+
+/* LEFT PANEL */
+
+.contact-details-panel {
+    position: relative;
+    height: 100%;
+    min-height: 650px;
+    padding: 65px 48px;
+    overflow: hidden;
+    background: #12383d;
+    color: #fff;
+    border-radius: 3px 0 0 3px;
+}
+
+.contact-details-panel::after {
+    content: "";
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    right: -150px;
+    bottom: -120px;
+    border: 1px solid rgba(202, 174, 125, 0.25);
+    border-radius: 50%;
+    box-shadow:
+        0 0 0 35px rgba(202, 174, 125, 0.035),
+        0 0 0 70px rgba(202, 174, 125, 0.025);
+    pointer-events: none;
+}
+
+.contact-details-panel h2,
+.contact-details-panel h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 38px;
+    line-height: 1.25;
+    color: #fff;
+}
+
+.contact-details-panel p {
+    color: rgba(255,255,255,0.68);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+.contact-detail-item {
+    position: relative;
+    z-index: 1;
+    padding: 25px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+
+.contact-detail-item i {
+    display: inline-flex;
+    width: 43px;
+    height: 43px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    border: 1px solid rgba(202,174,125,0.45);
+    border-radius: 50%;
+    color: #c9aa78;
+    font-size: 17px;
+}
+
+/* RIGHT FORM PANEL */
+
+.contact-form-panel {
+    position: relative;
+    height: 100%;
+    padding: 65px 58px;
+    background: #fff;
+    border: 1px solid rgba(23,61,66,0.07);
+    border-radius: 0 3px 3px 0;
+    box-shadow: 20px 25px 70px rgba(24,49,48,0.08);
+}
+
+.contact-form-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 58px;
+    width: 55px;
+    height: 3px;
+    background: #b99b6b;
+}
+
+.contact-form-panel h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 39px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #173d42;
+    margin-bottom: 15px;
+}
+
+.contact-form-panel > p {
+    color: #858b86;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 38px;
+}
+
+/* LABELS */
+
+.contact-form-panel label {
+    display: block;
+    margin-bottom: 10px;
+    color: #345054;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.1px;
+    text-transform: uppercase;
+}
+
+/* INPUT FIELDS */
+
+.contact-form-panel .form-control,
+.contact-form-panel .form-select {
+    min-height: 57px;
+    padding: 15px 17px;
+    background: #f8f8f5;
+    border: 1px solid #e8e9e3;
+    border-radius: 2px;
+    color: #173d42;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    box-shadow: none;
+    transition: all 0.3s ease;
+}
+
+.contact-form-panel textarea.form-control {
+    min-height: 145px;
+    resize: vertical;
+}
+
+.contact-form-panel .form-control::placeholder {
+    color: #a5aaa4;
+    font-size: 13px;
+}
+
+.contact-form-panel .form-control:focus,
+.contact-form-panel .form-select:focus {
+    background: #fff;
+    border-color: #b99b6b;
+    box-shadow: 0 0 0 4px rgba(185,155,107,0.10);
+}
+
+/* FIELD SPACING */
+
+.contact-form-panel .mb-3 {
+    margin-bottom: 25px !important;
+}
+
+/* SUBMIT BUTTON */
+
+.contact-form-panel button[type="submit"] {
+    position: relative;
+    width: 100%;
+    min-height: 59px;
+    margin-top: 10px;
+    padding: 16px 24px;
+    background: #173d42;
+    border: 1px solid #173d42;
+    border-radius: 2px;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: all 0.35s ease;
+}
+
+.contact-form-panel button[type="submit"]:hover {
+    background: #b99b6b;
+    border-color: #b99b6b;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(23,61,66,0.15);
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 991px) {
+    .contact-main-section {
+        padding: 75px 0;
+    }
+
+    .contact-details-panel {
+        min-height: auto;
+        border-radius: 3px 3px 0 0;
+        padding: 45px 35px;
+    }
+
+    .contact-form-panel {
+        border-radius: 0 0 3px 3px;
+        padding: 50px 35px;
+    }
+
+    .contact-form-panel::before {
+        left: 35px;
+    }
+}
+
+@media (max-width: 576px) {
+    .contact-main-section {
+        padding: 50px 0;
+    }
+
+    .contact-details-panel,
+    .contact-form-panel {
+        padding: 35px 23px;
+    }
+
+    .contact-details-panel h2,
+    .contact-details-panel h3,
+    .contact-form-panel h2 {
+        font-size: 31px;
+    }
+
+    .contact-form-panel::before {
+        left: 23px;
+    }
+}
+
+
+
+/* ================= 18. FOOTER ================= */
+
+.site-footer {
+    padding-top: 75px;
+    color: rgba(255,255,255,0.7);
+    background: #0d2930;
+}
+
+.footer-main {
+    padding-bottom: 55px;
+}
+
+.footer-brand {
+    color: var(--white);
+}
+
+.footer-brand strong {
+    color: #8cc4b9;
+}
+
+.footer-description {
+    max-width: 310px;
+    margin-top: 24px;
+    color: rgba(255,255,255,0.58);
+    font-size: 12px;
+    line-height: 1.9;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.footer-socials a {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.footer-socials a:hover {
+    color: var(--navy);
+    background: #e5cda8;
+    border-color: #e5cda8;
+}
+
+.footer-heading {
+    margin-bottom: 23px;
+    color: var(--white);
+    font-family: var(--body-font);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a,
+.footer-contact a,
+.footer-contact span {
+    color: rgba(255,255,255,0.58);
+    font-size: 11px;
+    transition: var(--transition);
+}
+
+.footer-links a:hover,
+.footer-contact a:hover {
+    color: #e5cda8;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.footer-contact i {
+    color: #e5cda8;
+    font-size: 15px;
+}
+
+.footer-bottom {
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+}
+
+.footer-bottom p {
+    margin: 0;
+    color: rgba(255,255,255,0.48);
+    font-size: 10px;
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 22px;
+}
+
+.footer-bottom-links a {
+    color: rgba(255,255,255,0.55);
+    font-size: 10px;
+}
+
+.footer-bottom-links a:hover {
+    color: #e5cda8;
+}
+
+
+/* ================= 19. WHATSAPP BUTTON ================= */
+
+.whatsapp-float {
+    position: fixed;
+    z-index: 999;
+    right: 25px;
+    bottom: 25px;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    background: #20b96b;
+    border-radius: 50%;
+    font-size: 26px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.18);
+    transition: var(--transition);
+}
+
+.whatsapp-float:hover {
+    color: var(--white);
+    transform: translateY(-5px);
+    background: #159b56;
+}
+
+
+/* ================= 20. LIGHTBOX ================= */
+
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 35px;
+    background: rgba(5, 20, 24, 0.94);
+}
+
+.image-lightbox.active {
+    display: flex;
+}
+
+.image-lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    width: 42px;
+    height: 42px;
+    color: var(--white);
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.4);
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+/* ================= 21. REVEAL ANIMATION ================= */
+
+.reveal {
+    opacity: 1;
+    transform: none;
+}
+
+.js-enabled .reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.js-enabled .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ================= 22. RESPONSIVE: TABLET ================= */
+
+@media (max-width: 991px) {
+
+    :root {
+        --section-space: 80px;
+    }
+
+    .site-header .navbar {
+        min-height: 72px;
+    }
+
+    .navbar-collapse {
+        padding: 18px 0 12px;
+    }
+
+    .navbar-nav {
+        align-items: stretch !important;
+        gap: 2px;
+    }
+
+    .navbar .nav-link {
+        padding: 11px 5px !important;
+    }
+
+    .nav-cta {
+        margin-top: 10px;
+    }
+
+    .hero-section {
+        min-height: 620px;
+        height: auto;
+    }
+
+    .hero-content {
+        max-width: 620px;
+    }
+
+    .intro-content,
+    .about-intro-content {
+        padding-left: 0;
+    }
+
+    .intro-image-wrap,
+    .about-main-image {
+        max-width: 100%;
+        height: 430px;
+    }
+
+    .experience-image {
+        height: 230px;
+    }
+
+    .resort-image {
+        height: 230px;
+    }
+
+    .destination-image-large {
+        height: 360px;
+    }
+
+    .destination-image-small {
+        height: 250px;
+    }
+
+    .contact-info-panel,
+    .contact-form-panel {
+        padding: 30px;
+    }
+}
+
+
+/* ================= 23. RESPONSIVE: MOBILE ================= */
+
+@media (max-width: 767px) {
+
+    :root {
+        --section-space: 65px;
+    }
+
+    body {
+        font-size: 14px;
+    }
+
+    .brand-logo {
+        font-size: 13px;
+    }
+
+    .brand-icon {
+        width: 37px;
+        height: 37px;
+        font-size: 18px;
+    }
+
+    .hero-section {
+        min-height: 620px;
+        height: auto;
+    }
+
+    .hero-container {
+        padding-top: 80px;
+        padding-bottom: 100px;
+    }
+
+    .hero-content {
+        padding-top: 0;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(45px, 12vw, 65px);
+        letter-spacing: -1.5px;
+    }
+
+    .hero-content p {
+        font-size: 13px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-buttons a {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .hero-bottom {
+        bottom: 22px;
+        font-size: 8px;
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+
+    .section-title {
+        font-size: 39px;
+        letter-spacing: -1px;
+    }
+
+    .section-heading {
+        margin-bottom: 35px;
+    }
+
+    .intro-image-wrap,
+    .about-main-image {
+        height: 350px;
+    }
+
+    .intro-image-wrap::after {
+        right: -8px;
+        bottom: -8px;
+    }
+
+    .intro-content {
+        padding-top: 12px;
+    }
+
+    .experience-image,
+    .resort-image {
+        height: 250px;
+    }
+
+    .experience-content {
+        padding: 23px;
+    }
+
+    .experience-content p {
+        min-height: auto;
+    }
+
+    .resorts-section .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .desktop-link {
+        display: none;
+    }
+
+    .mobile-resort-link {
+        display: block;
+    }
+
+    .home-cta-section {
+        min-height: 420px;
+        padding: 65px 0;
+    }
+
+    .cta-content h2 {
+        font-size: 43px;
+    }
+
+    .page-hero {
+        min-height: 390px;
+    }
+
+    .page-hero-content {
+        padding-top: 55px;
+        padding-bottom: 55px;
+    }
+
+    .page-hero-content h1 {
+        font-size: 46px;
+    }
+
+    .about-image-note {
+        left: 15px;
+        bottom: 15px;
+    }
+
+    .approach-card {
+        min-height: auto;
+        padding: 28px 25px;
+    }
+
+    .destination-image-grid {
+        grid-template-columns: 1fr 0.7fr;
+        gap: 10px;
+    }
+
+    .destination-image-large {
+        height: 300px;
+    }
+
+    .destination-image-small {
+        height: 210px;
+    }
+
+    .statement-content h2 {
+        font-size: 42px;
+    }
+
+    .resort-gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 190px 140px;
+    }
+
+    .resort-gallery-item:first-child {
+        grid-column: span 2;
+        grid-row: auto;
+    }
+
+    .itinerary-list::before {
+        left: 21px;
+    }
+
+    .itinerary-item {
+        grid-template-columns: 44px 1fr;
+        gap: 12px;
+    }
+
+    .itinerary-day {
+        width: 44px;
+        height: 44px;
+        font-size: 9px;
+    }
+
+    .itinerary-content {
+        padding: 20px;
+    }
+
+    .itinerary-content h3 {
+        font-size: 21px;
+    }
+
+    .contact-info-panel,
+    .contact-form-panel {
+        padding: 27px 22px;
+    }
+
+    .contact-info-panel h2,
+    .contact-form-panel h2 {
+        font-size: 30px;
+    }
+
+    .footer-main {
+        padding-bottom: 35px;
+    }
+
+    .footer-main > div {
+        margin-bottom: 10px;
+    }
+
+    .footer-bottom {
+        padding: 20px 0;
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .whatsapp-float {
+        width: 49px;
+        height: 49px;
+        right: 17px;
+        bottom: 17px;
+        font-size: 23px;
+    }
+
+}
+
+
+/* ================= 24. SMALL MOBILE ================= */
+
+@media (max-width: 420px) {
+
+    .hero-content h1 {
+        font-size: 43px;
+    }
+
+    .hero-eyebrow,
+    .section-eyebrow {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .section-title {
+        font-size: 35px;
+    }
+
+    .btn-primary-custom,
+    .btn-outline-custom {
+        min-height: 50px;
+        padding: 13px 17px;
+        font-size: 9px;
+    }
+
+    .destination-image-large {
+        height: 250px;
+    }
+
+    .destination-image-small {
+        height: 175px;
+    }
+
+    .page-hero-content h1 {
+        font-size: 39px;
+    }
+
+}
+
+/* ==============================
+   FOUNDER & CO-FOUNDER SECTION
+============================== */
+
+.team-section {
+    padding: 110px 0;
+    background: #f8f6f0;
+}
+
+.section-heading {
+    max-width: 650px;
+    margin: 0 auto 55px;
+}
+
+.section-eyebrow {
+    display: inline-block;
+    color: #a58b5c;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+}
+
+.section-heading h2,
+.team-preview-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    color: #142f35;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 em,
+.team-preview-text h2 em {
+    color: #a58b5c;
+    font-weight: 400;
+}
+
+.section-heading p,
+.team-preview-text p {
+    color: #777b77;
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 340px));
+    justify-content: center;
+    gap: 35px;
+}
+
+.team-card {
+    background: #fff;
+    overflow: hidden;
+}
+
+.team-image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: #e9e5da;
+}
+
+.team-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.team-card:hover .team-image img {
+    transform: scale(1.04);
+}
+
+.team-info {
+    padding: 28px;
+}
+
+.team-role {
+    color: #a58b5c;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+}
+
+.team-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 27px;
+    color: #142f35;
+    margin: 10px 0;
+}
+
+.team-info p {
+    color: #777b77;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 0;
+}
+
+
+/* ==============================
+   HOMEPAGE TEAM PREVIEW
+============================== */
+
+.team-preview-section {
+    padding: 100px 0;
+    background: #fff;
+}
+
+.team-preview-content {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    align-items: center;
+    gap: 70px;
+}
+
+.team-preview-text {
+    max-width: 440px;
+}
+
+.team-preview-text h2 {
+    line-height: 1.2;
+}
+
+.team-preview-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.team-preview-card {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background: #e9e5da;
+}
+
+.team-preview-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.team-preview-card:hover img {
+    transform: scale(1.04);
+}
+
+.team-preview-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 35px 18px 18px;
+    color: #fff;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+}
+
+.team-preview-caption h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    margin: 0 0 4px;
+}
+
+.team-preview-caption span {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+
+/* BUTTON */
+
+.btn-primary-custom {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 18px;
+    padding: 14px 24px;
+    background: #173d42;
+    color: #fff;
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s ease;
+}
+
+.btn-primary-custom:hover {
+    background: #a58b5c;
+    color: #fff;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .team-section,
+    .team-preview-section {
+        padding: 70px 0;
+    }
+
+    .team-grid {
+        grid-template-columns: minmax(0, 400px);
+        gap: 25px;
+    }
+
+    .team-preview-content {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .team-preview-text {
+        max-width: 100%;
+    }
+
+    .team-preview-images {
+        gap: 12px;
+    }
+
+    .team-info {
+        padding: 22px;
+    }
+}
+
+/* ISLAND SAFARI NAVBAR LOGO */
+
+.brand-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0;
+}
+
+.brand-logo img {
+    width: 115px;
+    height: 85px;
+    object-fit: contain;
+    display: block;
+}
+
+@media (max-width: 576px) {
+    .brand-logo img {
+        width: 90px;
+        height: 68px;
+    }
+}
+
