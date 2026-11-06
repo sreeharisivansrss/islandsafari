@@ -1,171 +1,378 @@
 /* =========================================
-   ISLAND SAFARI - MAIN JAVASCRIPT
-   ========================================= */
+   ISLAND SAFARI — MAIN JAVASCRIPT
+========================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // NAVBAR SCROLL EFFECT
-    const navbar = document.querySelector(".main-navbar");
+    /* =====================================
+       1. FOOTER YEAR
+    ===================================== */
 
-    function handleNavbar() {
-        if (!navbar) return;
+    const yearElements = document.querySelectorAll(
+        "#currentYear, .current-year, [data-current-year]"
+    );
 
-        if (window.scrollY > 50) {
-            navbar.classList.add("scrolled");
+    yearElements.forEach(function (element) {
+        element.textContent = new Date().getFullYear();
+    });
+
+
+    /* =====================================
+       2. NAVBAR SCROLL EFFECT
+    ===================================== */
+
+    const header = document.querySelector(".site-header");
+
+    function updateNavbar() {
+        if (!header) return;
+
+        if (window.scrollY > 40) {
+            header.classList.add("scrolled");
         } else {
-            navbar.classList.remove("scrolled");
+            header.classList.remove("scrolled");
         }
     }
 
-    handleNavbar();
-    window.addEventListener("scroll", handleNavbar);
+    updateNavbar();
 
-
-    // ACTIVE NAV LINK
-    const currentPage = window.location.pathname.split("/").pop() || "index.html";
-
-    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
-        const linkPage = link.getAttribute("href");
-
-        if (linkPage === currentPage) {
-            link.classList.add("active");
-        } else {
-            link.classList.remove("active");
-        }
+    window.addEventListener("scroll", updateNavbar, {
+        passive: true
     });
 
 
-    // CLOSE MOBILE NAV AFTER CLICK
-    document.querySelectorAll(".navbar-nav .nav-link").forEach(link => {
-        link.addEventListener("click", () => {
-            const navMenu = document.querySelector(".navbar-collapse");
+    /* =====================================
+       3. SMOOTH SCROLL
+    ===================================== */
 
-            if (navMenu && navMenu.classList.contains("show")) {
-                const bsCollapse = bootstrap.Collapse.getOrCreateInstance(navMenu);
-                bsCollapse.hide();
-            }
-        });
-    });
+    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
 
+        link.addEventListener("click", function (event) {
 
-    // SCROLL REVEAL ANIMATION
-    const revealElements = document.querySelectorAll(".reveal");
+            const targetId = link.getAttribute("href");
 
-    if ("IntersectionObserver" in window) {
-        const observer = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                    obs.unobserve(entry.target);
-                }
+            if (!targetId || targetId === "#") return;
+
+            const target = document.querySelector(targetId);
+
+            if (!target) return;
+
+            event.preventDefault();
+
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
             });
-        }, {
-            threshold: 0.12
+
         });
 
-        revealElements.forEach(element => observer.observe(element));
-    } else {
-        revealElements.forEach(element => {
-            element.classList.add("visible");
+    });
+
+
+    /* =====================================
+       4. MOBILE NAVBAR AUTO CLOSE
+    ===================================== */
+
+    const navCollapse = document.querySelector(".navbar-collapse");
+
+    const navLinks = document.querySelectorAll(
+        ".navbar-collapse .nav-link, .navbar-collapse .nav-cta"
+    );
+
+    navLinks.forEach(function (link) {
+
+        link.addEventListener("click", function () {
+
+            if (
+                navCollapse &&
+                navCollapse.classList.contains("show") &&
+                typeof bootstrap !== "undefined"
+            ) {
+                const collapseInstance =
+                    bootstrap.Collapse.getOrCreateInstance(navCollapse);
+
+                collapseInstance.hide();
+            }
+
         });
-    }
+
+    });
 
 
-    // IMAGE LIGHTBOX
-    const lightbox = document.querySelector(".image-lightbox");
-    const lightboxImage = document.querySelector(".image-lightbox img");
+    /* =====================================
+       5. IMAGE LIGHTBOX
+    ===================================== */
+
+    const lightbox = document.getElementById("imageLightbox");
+    const lightboxImage = document.getElementById("lightboxImage");
     const lightboxClose = document.querySelector(".lightbox-close");
 
-    document.querySelectorAll(".gallery-item img").forEach(image => {
-        image.addEventListener("click", () => {
-            if (!lightbox || !lightboxImage) return;
+    function openLightbox(imageSrc, imageAlt) {
 
-            lightboxImage.src = image.src;
-            lightboxImage.alt = image.alt;
-            lightbox.classList.add("active");
-            document.body.style.overflow = "hidden";
-        });
-    });
+        if (!lightbox || !lightboxImage || !imageSrc) return;
+
+        lightboxImage.src = imageSrc;
+        lightboxImage.alt = imageAlt || "Island Safari image";
+
+        lightbox.classList.add("active");
+        lightbox.setAttribute("aria-hidden", "false");
+
+        document.body.style.overflow = "hidden";
+
+    }
 
     function closeLightbox() {
+
         if (!lightbox) return;
 
         lightbox.classList.remove("active");
+        lightbox.setAttribute("aria-hidden", "true");
+
         document.body.style.overflow = "";
+
+        if (lightboxImage) {
+            lightboxImage.src = "";
+        }
+
     }
+
+    document.querySelectorAll("[data-lightbox], .lightbox-trigger").forEach(
+        function (image) {
+
+            image.addEventListener("click", function (event) {
+
+                if (event.target.closest("a")) {
+                    event.preventDefault();
+                }
+
+                const imageElement =
+                    image.tagName === "IMG"
+                        ? image
+                        : image.querySelector("img");
+
+                const imageSrc =
+                    image.getAttribute("data-lightbox") ||
+                    (imageElement && (
+                        imageElement.currentSrc ||
+                        imageElement.src
+                    ));
+
+                const imageAlt =
+                    imageElement ? imageElement.alt : "";
+
+                openLightbox(imageSrc, imageAlt);
+
+            });
+
+        }
+    );
 
     if (lightboxClose) {
         lightboxClose.addEventListener("click", closeLightbox);
     }
 
     if (lightbox) {
-        lightbox.addEventListener("click", event => {
+
+        lightbox.addEventListener("click", function (event) {
+
             if (event.target === lightbox) {
                 closeLightbox();
             }
+
         });
+
     }
 
-    document.addEventListener("keydown", event => {
-        if (event.key === "Escape") {
+    document.addEventListener("keydown", function (event) {
+
+        if (
+            event.key === "Escape" &&
+            lightbox &&
+            lightbox.classList.contains("active")
+        ) {
             closeLightbox();
         }
+
     });
 
 
-    // WHATSAPP ENQUIRY FORM
-    const enquiryForm = document.querySelector("#enquiryForm");
+    /* =====================================
+       6. WHATSAPP FLOATING BUTTON
+    ===================================== */
+
+    document.querySelectorAll(".whatsapp-float").forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            const href = button.getAttribute("href");
+
+            if (!href || href === "#") {
+                event.preventDefault();
+
+                console.warn(
+                    "Please add the WhatsApp URL to .whatsapp-float."
+                );
+            }
+
+        });
+
+    });
+
+
+    /* =====================================
+       7. WHATSAPP ENQUIRY FORM
+    ===================================== */
+
+    const enquiryForm = document.querySelector(
+        "#contactForm, #enquiryForm, [data-whatsapp-form]"
+    );
 
     if (enquiryForm) {
+
         enquiryForm.addEventListener("submit", function (event) {
+
             event.preventDefault();
 
-            if (!enquiryForm.reportValidity()) return;
+            if (!enquiryForm.checkValidity()) {
+                enquiryForm.reportValidity();
+                return;
+            }
 
-            const name = document.querySelector("#customerName")?.value.trim() || "";
-            const phone = document.querySelector("#customerPhone")?.value.trim() || "";
-            const email = document.querySelector("#customerEmail")?.value.trim() || "";
-            const packageName = document.querySelector("#customerPackage")?.value || "";
-            const travelDate = document.querySelector("#travelDate")?.value || "";
-            const guests = document.querySelector("#guestCount")?.value || "";
-            const message = document.querySelector("#customerMessage")?.value.trim() || "";
+            const formData = new FormData(enquiryForm);
 
-            const whatsappNumber = "918891601055";
+            const getValue = function (names) {
 
-            const whatsappMessage =
-                `Hello Island Safari! I would like to enquire about a trip.\n\n` +
-                `Name: ${name}\n` +
-                `Phone: ${phone}\n` +
-                `Email: ${email}\n` +
-                `Package: ${packageName}\n` +
-                `Travel Date: ${travelDate}\n` +
-                `Guests: ${guests}\n` +
-                `Message: ${message}`;
+                for (const name of names) {
+
+                    const value = formData.get(name);
+
+                    if (value && String(value).trim()) {
+                        return String(value).trim();
+                    }
+
+                }
+
+                return "";
+
+            };
+
+            const name = getValue(["name", "fullName", "full_name"]);
+            const email = getValue(["email"]);
+            const phone = getValue(["phone", "mobile", "whatsapp"]);
+            const packageName = getValue([
+                "package",
+                "packageName",
+                "package_name"
+            ]);
+            const message = getValue(["message", "enquiry", "details"]);
+
+            const whatsappNumber =
+                enquiryForm.dataset.whatsappNumber ||
+                "REPLACE_WITH_WHATSAPP_NUMBER";
+
+            if (
+                !whatsappNumber ||
+                whatsappNumber === "REPLACE_WITH_WHATSAPP_NUMBER"
+            ) {
+                alert(
+                    "WhatsApp number is not configured. Please contact the website administrator."
+                );
+                return;
+            }
+
+            const whatsappMessage = [
+                "Hello Island Safari!",
+                "",
+                "I would like to enquire about a Lakshadweep trip.",
+                "",
+                name ? "Name: " + name : "",
+                phone ? "Phone: " + phone : "",
+                email ? "Email: " + email : "",
+                packageName ? "Package: " + packageName : "",
+                message ? "Message: " + message : "",
+                "",
+                "Please share more details."
+            ].filter(Boolean).join("\n");
 
             const whatsappURL =
-                `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
+                "https://wa.me/" +
+                whatsappNumber.replace(/\D/g, "") +
+                "?text=" +
+                encodeURIComponent(whatsappMessage);
 
             window.open(whatsappURL, "_blank", "noopener,noreferrer");
+
         });
+
     }
 
 
-    // CURRENT YEAR IN FOOTER
-    document.querySelectorAll(".current-year").forEach(element => {
-        element.textContent = new Date().getFullYear();
+    /* =====================================
+       8. REVEAL ANIMATION COMPATIBILITY
+    ===================================== */
+
+    document.querySelectorAll(".reveal").forEach(function (element) {
+
+        element.classList.add("active");
+
     });
 
-});
 
-// Image loading and placeholder handling
-document.querySelectorAll("img").forEach((img) => {
-    const markLoaded = () => {
-        img.classList.add("image-loaded");
-    };
+    /* =====================================
+       9. ACTIVE NAVIGATION LINK
+    ===================================== */
 
-    if (img.complete && img.naturalWidth > 0) {
-        markLoaded();
-    } else {
-        img.addEventListener("load", markLoaded);
-    }
+    const currentPage = window.location.pathname
+        .split("/")
+        .pop()
+        .toLowerCase();
+
+    document.querySelectorAll(".navbar .nav-link").forEach(
+        function (link) {
+
+            const linkPage = link.getAttribute("href");
+
+            if (!linkPage || linkPage.startsWith("#")) return;
+
+            const normalizedLink = linkPage
+                .split("/")
+                .pop()
+                .toLowerCase();
+
+            if (
+                normalizedLink === currentPage ||
+                (
+                    currentPage === "" &&
+                    normalizedLink === "index.html"
+                )
+            ) {
+                link.classList.add("active");
+                link.setAttribute("aria-current", "page");
+            } else {
+                link.classList.remove("active");
+                link.removeAttribute("aria-current");
+            }
+
+        }
+    );
+
+
+    /* =====================================
+       10. IMAGE LOADING OPTIMIZATION
+    ===================================== */
+
+    document.querySelectorAll("img").forEach(function (image) {
+
+        if (!image.hasAttribute("loading")) {
+            image.loading = "lazy";
+        }
+
+        if (!image.hasAttribute("decoding")) {
+            image.decoding = "async";
+        }
+
+    });
+
+
+    console.log("Island Safari website initialized successfully.");
+
 });
