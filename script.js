@@ -267,7 +267,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const whatsappNumber =
                 enquiryForm.dataset.whatsappNumber ||
-                "REPLACE_WITH_WHATSAPP_NUMBER";
+                "918891601055";
 
             if (
                 !whatsappNumber ||
